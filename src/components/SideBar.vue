@@ -30,7 +30,7 @@ export default {
 
 .sidebar {
   width: 150px;
-  background-image: linear-gradient(#0074D9,#00008B);
+  background-image: linear-gradient(#0074D9, #00008B);
   border-style: outset;
   border-left: 0px;
   border-top: 0px;

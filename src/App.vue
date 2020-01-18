@@ -39,6 +39,9 @@ export default {
     // this.fetchTeam(66);
     eventBus.$on('selected-team',(id) => {
       this.fetchTeam(id);
+    });
+    eventBus.$on('selected-player', (id) => {
+      this.fetchPlayer(id);
     })
 
   },

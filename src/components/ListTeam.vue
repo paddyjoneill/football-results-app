@@ -17,7 +17,7 @@ export default {
   methods: {
     handleClick(playerId) {
       console.log('gets here');
-      eventBus.$emit('player-selected-id', playerId );
+      eventBus.$emit('selected-player', playerId );
     }
   }
 }

@@ -1,7 +1,7 @@
 <template lang="html">
 <div class="sidebar">
   <br>
-  <button type="button" id="button">Friday 17/01/19 PM</button>
+  <button type="button" id="button">{{dateString}}</button>
   <button type="button" id="button">Premier League</button>
   <button type="button" id="button">Manchester United</button>
   <button type="button" id="button">Marcus Rashford</button>
@@ -12,6 +12,16 @@
 
 <script>
 export default {
+  name: 'side-bar',
+  data() {
+    return{
+      dateString: null
+    }
+  },
+  mounted () {
+    this.dateString = new Date().toLocaleString()
+    console.log(dateString);
+  }
 }
 </script>
 

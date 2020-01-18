@@ -1,6 +1,6 @@
 <template lang="html">
 <div class="">
-  <h1 id="leaguename">League Data</h1>
+  <h1 id="leaguename">Premier League</h1>
   <table>
     <tr>
       <th>Team</th>

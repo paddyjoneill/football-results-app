@@ -4,6 +4,7 @@
     <premier-league v-if="selectedView==='league'":league-data="leagueData"></premier-league>
     <list-team v-if="selectedView==='team'" :team-list="teamData"></list-team>
     <player-details v-if="selectedView==='player'" :player-data="playerData"></player-details>
+    <list-team-fixtures v-if="selectedView==='teamfixtures'" :fixture-data="selectedTeamMatches"></list-team-fixtures>
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import SideBar from './components/SideBar.vue';
 import PremierLeague from './components/PremierLeague.vue';
 import ListTeam from './components/ListTeam.vue';
 import PlayerDetails from './components/PlayerDetails.vue';
+import ListTeamFixtures from './components/ListTeamFixtures.vue'
 
 
 export default {
@@ -22,12 +24,14 @@ export default {
     'side-bar': SideBar,
     'premier-league': PremierLeague,
     'list-team': ListTeam,
-    'player-details': PlayerDetails
+    'player-details': PlayerDetails,
+    'list-team-fixtures': ListTeamFixtures
   },
   data() {
     return {
       leagueData: [],
       teamData: [],
+      selectedTeamMatches: [],
       playerData: [],
       selectedView: null,
       header: null
@@ -42,7 +46,10 @@ export default {
     });
     eventBus.$on('selected-player', (id) => {
       this.fetchPlayer(id);
-    })
+    });
+    eventBus.$on('team-fixture-list', (id) => {
+      this.fetchMatchesByTeam(id);
+    });
 
   },
   methods: {
@@ -96,6 +103,28 @@ export default {
       });
     },
 
+    fetchMatchesByTeam(id) {
+      console.log('in matches by team');
+      const myHeaders = new Headers();
+      myHeaders.append('X-Auth-Token', 'b15e579370e848c4bed1021cf57a017d');
+
+      let requestString = `https://api.football-data.org/v2/teams/${id}/matches`;
+
+      const myRequest = new Request(requestString, {
+        method: 'GET',
+        headers: myHeaders,
+        mode: 'cors',
+        cache: 'default',
+      });
+
+      fetch(myRequest)
+      .then((response) => response.json())
+      .then((footballData) => {
+        this.selectedTeamMatches = footballData;
+        this.selectedView = "teamfixtures"
+      });
+    },
+
     fetchLeague(id) {
       const myHeaders = new Headers();
       myHeaders.append('X-Auth-Token', 'b15e579370e848c4bed1021cf57a017d');
@@ -130,5 +159,7 @@ export default {
   display: flex;
   background-image: url("../public/images/old-trafford.jpg");
   background-size: cover;
+  /* width:800px;
+  height: 600px; */
 }
 </style>

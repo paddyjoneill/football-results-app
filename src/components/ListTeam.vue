@@ -1,6 +1,11 @@
 <template lang="html">
   <div class="teamlist">
     <h1 id="teamname">{{teamList.name}}</h1>
+      <h2 id="displayselection">
+        <button id="bigbutton">Squad</button>
+        <button id="bigbutton" v-on:click="handleFixtureButtonClick(teamList.id)">Fixtures</button>
+        <button id="bigbutton">Team Info</button>
+      </h2>
     <ul>
       <li v-on:click="handleClick(player.id)" id="player" v-for="(player, index) in teamList.squad"><button id="button"></button>{{player.name}}</li>
     </ul>
@@ -16,8 +21,10 @@ export default {
   props: ['team-list'],
   methods: {
     handleClick(playerId) {
-      console.log('gets here');
       eventBus.$emit('selected-player', playerId );
+    },
+    handleFixtureButtonClick(teamId) {
+      eventBus.$emit('team-fixture-list', teamId);
     }
   }
 }
@@ -45,6 +52,18 @@ export default {
   margin: 0px;
 }
 
+#bigbutton {
+  width: 30%;
+  height: 60px;
+  border-style: inset;
+  border-width: 5px;
+  border-color: #00008B;
+  color: white;
+  background-color: #0074D9;
+  font-size: 10px;
+  font-weight: bold;
+}
+
 
 
 ul {
@@ -56,8 +75,9 @@ ul {
   padding-bottom: 10px;
   margin-left: 20px;
   margin-right: 20px;
-  background-color: #000000;
-  opacity: 0.5;
+  /* background-color: #000000;
+  opacity: 0.5; */
+  background: rgba(0,0,0,0.3);
 
 }
 

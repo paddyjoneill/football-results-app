@@ -1,6 +1,7 @@
 <template lang="html">
 <div class="">
   <h1 id="leaguename">Premier League</h1>
+
   <table>
     <tr>
       <th>Team</th>
@@ -42,6 +43,17 @@ export default {
 
 <style lang="css" scoped>
 
+@font-face {
+  font-family: hellovetica;
+  src: url(/fonts/hellovetica.ttf);
+}
+
+div {
+  /* font-family: hellovetica; */
+  width: 715px;
+
+}
+
 #leaguename {
   text-align: center;
   width:800px;
@@ -55,11 +67,15 @@ export default {
 
 table {
   color: white;
-  background-color: #000000;
-  opacity: 0.5;
+  /* background-color: #000000;
+  opacity: 0.5; */
+  background: rgba(0,0,0,0.3);
   margin-left: 20px;
   margin-right: 20px;
   width: 860px;
+  /* font-size:12px;
+  width: 675px;
+  */
 }
 
 </style>

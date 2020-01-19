@@ -45,8 +45,9 @@ export default {
 
 table {
   color: white;
-  background-color: #000000;
-  opacity: 0.5;
+  /* background-color: #000000;
+  opacity: 0.5; */
+  background: rgba(0,0,0,0.3);
   margin-left: 20px;
   margin-right: 20px;
   width: 860px;

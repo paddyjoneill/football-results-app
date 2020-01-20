@@ -10,7 +10,7 @@
       <th>Score</th>
       <th>Away Team</th>
     </tr>
-    <tr v-for="fixture in fixtureData.matches">
+    <tr v-for="(fixture, index) in fixtureData.matches" v-on:click="handleFixtureClick(fixture.id)">
       <th>{{fixture.utcDate.substring(0,10)}}</th>
       <th>{{fixture.homeTeam.name}}</th>
       <th>{{fixture.score.fullTime.homeTeam}} - {{fixture.score.fullTime.awayTeam}}</th>
@@ -21,9 +21,17 @@
 </template>
 
 <script>
+import {eventBus} from '../main.js'
+
 export default {
   name: 'list-team-fixtures',
-  props: ['fixture-data']
+  props: ['fixture-data'],
+  methods: {
+    handleFixtureClick(id) {
+      console.log('id:',id);
+      eventBus.$emit('match-details', id)
+    }
+  }
 }
 </script>
 

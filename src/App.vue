@@ -5,6 +5,7 @@
     <list-team v-if="selectedView==='team'" :team-list="teamData"></list-team>
     <player-details v-if="selectedView==='player'" :player-data="playerData"></player-details>
     <list-team-fixtures v-if="selectedView==='teamfixtures'" :fixture-data="selectedTeamMatches"></list-team-fixtures>
+    <match-details v-if="selectedView==='matchdetails'" :match-data="matchData"></match-details>
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import PremierLeague from './components/PremierLeague.vue';
 import ListTeam from './components/ListTeam.vue';
 import PlayerDetails from './components/PlayerDetails.vue';
 import ListTeamFixtures from './components/ListTeamFixtures.vue'
+import MatchDetails from './components/MatchDetails.vue'
 
 
 export default {
@@ -25,7 +27,8 @@ export default {
     'premier-league': PremierLeague,
     'list-team': ListTeam,
     'player-details': PlayerDetails,
-    'list-team-fixtures': ListTeamFixtures
+    'list-team-fixtures': ListTeamFixtures,
+    'match-details': MatchDetails
   },
   data() {
     return {
@@ -33,14 +36,13 @@ export default {
       teamData: [],
       selectedTeamMatches: [],
       playerData: [],
+      matchData: [],
       selectedView: null,
       header: null
     }
   },
   mounted() {
     this.fetchLeague(2021);
-    // this.fetchPlayer(3188);
-    // this.fetchTeam(66);
     eventBus.$on('selected-team',(id) => {
       this.fetchTeam(id);
     });
@@ -50,14 +52,22 @@ export default {
     eventBus.$on('team-fixture-list', (id) => {
       this.fetchMatchesByTeam(id);
     });
+    eventBus.$on('match-details', (id) => {
+      this.fetchMatch(id);
+    });
+    eventBus.$on('switch-view', (view) => {
+      console.log(view);
+      this.selectedView = view;
+    })
 
   },
   methods: {
-    fetchData(myRequest) {
+    fetchData() {
+
       fetch(myRequest)
       .then((response) => response.json())
       .then((footballData) => {
-        this.teamData = footballData;
+        return footballData;
       });
     },
 
@@ -104,7 +114,6 @@ export default {
     },
 
     fetchMatchesByTeam(id) {
-      console.log('in matches by team');
       const myHeaders = new Headers();
       myHeaders.append('X-Auth-Token', 'b15e579370e848c4bed1021cf57a017d');
 
@@ -122,6 +131,27 @@ export default {
       .then((footballData) => {
         this.selectedTeamMatches = footballData;
         this.selectedView = "teamfixtures"
+      });
+    },
+
+    fetchMatch(id) {
+      const myHeaders = new Headers();
+      myHeaders.append('X-Auth-Token', 'b15e579370e848c4bed1021cf57a017d');
+
+      let requestString = `https://api.football-data.org/v2/matches/${id}`;
+
+      const myRequest = new Request(requestString, {
+        method: 'GET',
+        headers: myHeaders,
+        mode: 'cors',
+        cache: 'default',
+      });
+
+      fetch(myRequest)
+      .then((response) => response.json())
+      .then((footballData) => {
+        this.matchData = footballData;
+        this.selectedView = "matchdetails"
       });
     },
 

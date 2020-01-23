@@ -180,8 +180,15 @@ export default {
 </script>
 
 <style>
+
+@font-face {
+  font-family: fourche;
+  src: url(/fonts/sffourchebold.ttf);
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  /* font-family: fourche; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

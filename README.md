@@ -1,4 +1,9 @@
-# football
+# Link
+https://football-results-app.now.sh/
+
+# Championship Manager Style Football Results
+
+Football league table and results webpage made using vue.js and results fetched using football-data.org api
 
 ## Project setup
 ```

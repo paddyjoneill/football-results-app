@@ -7,7 +7,7 @@ Football league table and results webpage made using vue.js and results from the
 Styled with CSS to look like Championship Manager:
 (https://cdn.vox-cdn.com/uploads/chorus_image/image/57162309/DMK88JWUMAEo20j.0.png)
 
-To download and run on your own machines follow instructions below.
+To download and run on your own machine follow the instructions below.
 
 ## Project setup
 ```

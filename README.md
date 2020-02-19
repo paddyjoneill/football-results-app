@@ -4,10 +4,20 @@ https://football-results-app.now.sh/
 # Championship Manager Style Football Results
 
 Football league table and results webpage made using vue.js and results from the football-data.org api.
-Styled with CSS to look like Championship Manager:
+
+To work on my CSS I decided to style it to look like Championship Manager:
 (https://cdn.vox-cdn.com/uploads/chorus_image/image/57162309/DMK88JWUMAEo20j.0.png)
 
-To download and run on your own machine follow the instructions below.
+## Still to do:
+
+- Make CSS more responsive.
+- Update the buttons on the left with the most recently selected team & player and make clickable.
+- I would like to do more with the matches but have reached the limit of information of the free tier on the api.
+- Change background and have a selection.
+
+## To download and run
+
+Follow the instructions below.
 
 ## Project setup
 ```

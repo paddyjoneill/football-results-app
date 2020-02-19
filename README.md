@@ -12,7 +12,7 @@ To work on my CSS I decided to style it to look like Championship Manager:
 
 - Make CSS more responsive.
 - Update the buttons on the left with the most recently selected team & player and make clickable.
-- I would like to do more with the matches but have reached the limit of information of the free tier on the api.
+- I would like to do more with the matches but have reached the limit of information on the free tier of the api.
 - Change background and have a selection.
 
 ## To download and run
